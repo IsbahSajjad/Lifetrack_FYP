@@ -1,0 +1,170 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    width:80%;
+    height: 90%;
+    max-width: 1200px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.left-section {
+    background-color: #1a2b4e;
+    color: white;
+    padding: 40px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-section h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+
+}
+
+
+
+.left-section .doctor-image {
+    width: 60%;
+    margin-top: 0.2px;
+}
+.left-section .logo {
+
+    margin-top: 50px;
+}
+.logo img{
+  width: 20%;
+  margin-left: 180px;
+}
+
+.right-section {
+    padding: 60px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form label {
+    margin-top: 20px;
+    font-size: 15px;
+    
+    font-weight: bold;  
+      margin-bottom: 10px;  
+   
+}
+form input {
+    font-size: 15px; 
+    padding: 10px;      
+    margin-bottom: 15px;
+     border: 1px solid #ccccccdc; 
+    border-radius: 4px; 
+    width: 80%;        
+     
+}
+
+
+form button {
+    width: 100%;
+    padding: 12px;  
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 30px;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    .left-section {
+        display:none;
+    }
+    .right-section {
+        width: 100%;
+        padding: 30px;
+    }
+}
+
+form input:focus {
+    border-color: #0066cc;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.remember-me input {
+    margin-right: 10px;
+    margin-top: 11px;
+}
+
+form button {
+    padding: 12px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #004999;
+}
+
+.login-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.login-link a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

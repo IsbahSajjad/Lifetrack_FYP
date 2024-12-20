@@ -1,0 +1,387 @@
+<!-- 
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Management Platform</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'CSS/styles.css' %}">  <!-- Link to your CSS file -->
+    
+    <!-- Styles for the Modal 
+    <style>
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="logo">
+            <h1>HealthCare</h1>
+        </div>
+        <nav>
+            <h5>Login</h5>
+            <h5>Sign Up</h5>
+        </nav>
+    </header>
+
+    <section class="appointments">
+        <h2>Appointments</h2>
+        
+        <div class="upcoming-appointments">
+            <h3>Upcoming Appointments</h3>
+            <table>
+                <tr>
+                    <th>Doctor</th>
+                    <th>Specialization</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>James Carter</td>
+                    <td>Cardiologist</td>
+                    <td>02/12/2023</td>
+                    <td>Active</td>
+                </tr>
+                <tr>
+                    <td>Kelly Jarner</td>
+                    <td>Dermatologist</td>
+                    <td>03/12/2023</td>
+                    <td>Upcoming</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="book-appointment">
+            <h3>Book a New Appointment</h3>
+            <form id="appointmentForm">
+                {% csrf_token %}
+                <label for="doctor">Select Doctor:</label>
+                <select id="doctor" name="doctor" required>
+                    <option value="" disabled selected>Select a doctor</option>
+                    {% for doctor in doctors %}
+                        <option value="{{ doctor.id }}">{{ doctor.name }}</option>
+                    {% endfor %}
+                </select>
+        
+                <label for="date">Select Date:</label>
+                <input type="date" id="date" name="date" required>
+        
+                <label for="time">Select Time:</label>
+                <input type="time" id="time" name="time" required>
+        
+                <button type="submit">Book Appointment</button>
+            </form>
+        </div>
+    </section>
+
+    // The Modal 
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Appointment Confirmation</h2>
+            <p>Your appointment has been booked successfully!</p>
+        </div>
+    </div>
+
+   
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        var form = document.getElementById("appointmentForm");
+
+        var span = document.getElementsByClassName("close")[0];
+
+        form.onsubmit = function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            modal.style.display = "block"; // Show the modal
+
+            
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Booking</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    
+    <!-- Custom CSS for Sidebar and Theme -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+ h4{
+    font-weight: bold;
+    font-size: 40px;
+    color: white;
+ }
+        /* Sidebar Styling */
+        .sidebar {
+            width: 280px; /* Broaden sidebar */
+            background-color: #0b1a40;
+            padding-top: 30px;
+            height: 100vh; /* Make it full height */
+            position: fixed; /* Fix sidebar on the side */
+            overflow-y: auto; /* Add scroll if needed */
+        }
+        .sidebar a {
+            color: white;
+            padding: 15px 20px;
+            display: block;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .sidebar a:hover {
+            background-color: #0b9eaf;;
+            color: #0b1a40;
+        }
+        .sidebar .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .sidebar .logo img {
+            width: 120px;
+            margin-bottom: 10px;
+        }
+        .sidebar .nav-link {
+            color: white;
+            margin: 10px 0;
+        }
+
+
+        /* Main content area */
+        .content {
+            margin-left: 260px;
+            padding: 20px;
+        }
+
+        /* Card and Filters styling */
+        .doctor-card img {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+        }
+
+        .doctor-card {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .time-slot-btn {
+            background-color: #ffd34d;
+            color: black;
+            border: none;
+            margin: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .filter-section {
+            background-color:#01b2c6 ;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .filter-section h4 {
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .filter-section label {
+            color: white;
+        }
+
+        .btn-primary {
+            background-color: #ffd34d;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #eec95a;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+
+            .doctor-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .doctor-card img {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="{% static 'images/healthcare.png' %}" alt="Medicare Logo">
+            <h4>Medicare</h4>
+        </div>
+        <a href="#" class="nav-link">Appointment Booking</a>
+        <a href="#" class="nav-link">Lab Reports</a>
+        <a href="#" class="nav-link">AI-Assisted Consultation</a>
+        <a href="#" class="nav-link">Patient History</a>
+        <a href="#" class="nav-link">Emergency QR Code</a>
+        <a href="#" class="nav-link">Order Medicines</a>
+        <a href="#" class="nav-link">Request Second Opinion</a>
+        <a href="#" class="nav-link">Feedback System</a>
+    </div>
+
+
+    <!-- Main Content -->
+    <div class="content">
+        <h2>Book Your Appointment</h2>
+        
+        <!-- Filter Section -->
+        <div class="filter-section mb-4">
+            <h4>Filter Doctors</h4>
+            <form class="row g-3">
+                <div class="col-md-4">
+                    <label for="specialization" class="form-label">Specialization</label>
+                    <select class="form-select" id="specialization">
+                        <option value="">Select Specialization</option>
+                        <option value="cardiology">Cardiology</option>
+                        <option value="neurology">Neurology</option>
+                        <option value="dermatology">Dermatology</option>
+                        <option value="pediatrics">Pediatrics</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" class="form-control" id="location" placeholder="Enter location">
+                </div>
+                <div class="col-md-4">
+                    <label for="date" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="date">
+                </div>
+                <div class="col-md-12 text-end">
+                    <button type="submit" class="btn btn-primary">Apply Filters</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Doctor Cards Section -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="doctor-card d-flex align-items-center">
+                    <img src="{% static 'images/doc.png' %}" alt="Doctor Image">
+                    <div>
+                        <h5>Dr. Sarah Lee</h5>
+                        <p>Specialization: Cardiologist</p>
+                        <p>Location: New York City</p>
+                        <p>Date: 22nd Oct 2024</p>
+                        <p>Available Time Slots:</p>
+                        <div class="d-flex flex-wrap">
+                            <button class="time-slot-btn">10:00 AM</button>
+                            <button class="time-slot-btn">11:00 AM</button>
+                            <button class="time-slot-btn">1:00 PM</button>
+                            <button class="time-slot-btn">2:30 PM</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="doctor-card d-flex align-items-center">
+                    <img src="your-doctor-image-url" alt="Doctor Image">
+                    <div>
+                        <h5>Dr. John Doe</h5>
+                        <p>Specialization: Neurologist</p>
+                        <p>Location: Los Angeles</p>
+                        <p>Date: 24th Oct 2024</p>
+                        <p>Available Time Slots:</p>
+                        <div class="d-flex flex-wrap">
+                            <button class="time-slot-btn">9:00 AM</button>
+                            <button class="time-slot-btn">12:00 PM</button>
+                            <button class="time-slot-btn">3:00 PM</button>
+                            <button class="time-slot-btn">4:30 PM</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

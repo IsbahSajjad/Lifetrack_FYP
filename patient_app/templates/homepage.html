@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Management Platform</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'CSS/styles.css' %}">  <!-- Link to your CSS file -->
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>HealthCare</h1>
+        </div>
+        <nav>
+            <h5>Login</h5>
+            <h5>Sign Up</h5>
+            
+            
+        </nav>
+    </header>
+
+
+    
+    <main class="container">
+        <section class=" greeting">
+            <h2>Good Morning, [Patient Name]!</h2>
+            <p>How are you feeling today?</p>
+        </section>
+
+        <section class="jumbotron container">
+            <h2>Find the Best Doctors with Health Care</h2>
+            <p>Appoint the doctors and get finest medical services.</p>
+        </section>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3>Vitals</h3>
+                    <ul>
+                        <li>Body Temperature: <strong>36.6 °C</strong></li>
+                        <li>Pulse: <strong>85 bpm</strong></li>
+                        <li>Blood Pressure: <strong>80/70 mmHg</strong></li>
+                        <li>Breathing Rate: <strong>15 breaths/min</strong></li>
+                    </ul>
+                </div>
+                <div class="feature-item">
+                    <h3>Appointments</h3>
+                    <p>Upcoming Appointments</p>
+                    <table>
+                        <tr>
+                            <th>Doctor</th>
+                            <th>Specialization</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr>
+                            <td>James Carter</td>
+                            <td>Cardiologist</td>
+                            <td>02/12/2023</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td>Kelly Jarner</td>
+                            <td>Dermatologist</td>
+                            <td>03/12/2023</td>
+                            <td>Upcoming</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        <!-- </section> -->
+
+        <section class="contact">
+            <h2>Contact Information</h2>
+            <p>If you have any questions or need support, please contact us at:</p>
+            <p>Email: support@healthcare.com</p>
+            <p>Phone: +1 (123) 456-7890</p>
+        </section>
+
+        <section class="faq">
+            <h2>FAQs</h2>
+            <h3>1. How do I book an appointment?</h3>
+            <p>You can book an appointment by navigating to the appointments section in your dashboard after signing in.</p>
+
+            <h3>2. How can I view my lab reports?</h3>
+            <p>Lab reports can be accessed from your dashboard under the 'Lab Reports' section.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Healthcare Management Platform. All rights reserved.</p>
+    </footer>
+</body>
+</html>
